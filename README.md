@@ -1,4 +1,4 @@
 # visage.auth App
 
-Visag.auth app is a state-of-the-art deep learning application that revolutionizes user authentication using facial recognition. 
+Visag.auth app is a state-of-the-art deep learning application that revolutionizes user authentication using facial recognition. <br>
 Built on the powerful DeepFace library, it leverages advanced models like MTCNN for robust face detection and FaceNet for high-precision facial verification
