@@ -142,3 +142,142 @@ function includes exception handling for two cases:
 """
 
 ################
+
+#this function will generate a JWT (JSON Web Token) for a user
+    # expires_delta (Optional[timedelta]): This parameter allows specifying an optional expiration time for the token as a timedelta object. 
+        # If not provided, a default expiration of 15 minutes is used
+def create_access_token(uuid:str,username:str,expires_delta:Optional[timedelta]=None) -> str:
+    """
+    Generates JWT tokens that can be used for user authentication 
+        throughout the application
+        OR
+    Generate a JWT token containing user information and an expiration claim
+        Args:
+            uuid (str): uuid of the user
+            username (str): username of the user
+
+        Raises:
+            e: _description_
+
+        Returns:
+            _type_: _description_
+    """
+
+    try:
+        secret_key = SECRET_KEY #retrieves secret key for signing JWT token
+        algorithm = ALGORITHM
+
+        ## constructing JWT payload
+        encode = {"sub":uuid,"username":username} #sub is a registered JWT claim that typically represents subject of token (user in this case)
+        
+        ## setting token expiration (optional)
+        if expires_delta: #checks if expires_delta argument was provided when calling create_access_token function
+            #expire = datetime.utcnow() + expires_delta #if expires_delta is provided, it calculates expiration time by adding provided timedelta object to current UTC time
+            expire = datetime.now(datetime.UTC) + expires_delta
+        else:
+            #expire = datetime.utcnow() + timedelta(minutes=15) #adds 15 minutes to current UTC time to define expiration time
+            expire = datetime.now(datetime.UTC) + timedelta(minutes=15)
+        
+        ## adding expiration claim - essential for verifying validity of token later
+        encode.update({"exp": expire}) #updates encode dictionary with a new key-value pair: "exp" (representing expiration) is set to calculated expiration time (expire)
+        
+        ## JWT Encoding and Return
+        # return jwt.encode(encode, Configuration().SECRET_KEY, algorithm=Configuration().ALGORITHM)
+        ## using jwt.encode function from the jose library
+        return jwt.encode(encode, secret_key, algorithm=algorithm)
+        """
+        encode: payload dictionary containing user information and expiration claim
+        secret_key: application's secret key used for signing token
+        algorithm: signing algorithm used (e.g., HS256)
+        """
+    ## Error Handling: catch any unexpected errors during the encoding process
+    except Exception as e:
+        raise e
+    
+################
+
+@router.post("/token")
+async def login_for_access_token(response:Response,login) -> dict: #"login" object as input - containing user's email and password
+    """
+    Handles user login and generates a JWT access token if login is successful
+        OR
+    Handles user login, validates credentials and generates JWT tokens for authenticated users
+        Returns:
+            dict: response
+    """
+
+    try:
+        #creating an instance of LoginValidation is created, potentially using login object's email and password
+        user_validation = LoginValidation(login.email_id, login.password)
+        #calling authenticate_user_login method of this LoginValidation object which verifies user credentials against database(i.e. MongoDB here) 
+        user: Optional[str] = user_validation.authenticate_user_login()
+        
+        ## Handling Failed Login
+        
+        #if authenticate_user_login returns a user object (presumably containing user information like UUID and username), login is successful
+        if not user:
+            return {"status":False, "uuid":None, "response":response}
+        
+        #creating a token_expires timedelta object, representing desired token expiration time (here 15 minutes)
+        token_expires = timedelta(minutes=15)
+        
+        ## Generating Access Token
+        #calling create_access_token function (defined earlier) with user's UUID, username and token_expires to generate a JWT access token
+        token = create_access_token(user["UUID"],user["username"], expires_delta=token_expires)
+        
+        ## Setting Access Token Cookie
+        #setting generated JWT token as a cookie named access_token in the user's response
+        response.set_cookie(key="access_token", value=token, httponly=True) #httponly=True flag ensures cookie cannot be accessed by JavaScript for enhanced security
+        
+        ## Returning Success Response
+        #returning a dictionary containing status=True, user's UUID and original response object
+            #This response will be used by frontend to indicate successful login and potentially access user information
+        return {"status": True, "uuid": user["UUID"], "response": response}
+    ## Error Handling (previous code)
+    # except Exception as e:
+    #     msg = "Failed to set access token"
+    #     response = JSONResponse(status_code=status.HTTP_404_NOT_FOUND,content={"message": msg})
+    #     return {"status": False, "uuid": None, "response": response}
+    
+    ## Specific Exception Handling
+    except ValueError as e:
+        # Handle specific login validation errors (e.g., invalid credentials)
+        msg = f"Login failed: {e}"
+        response = JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED, content={"message": msg})
+        return {"status": False, "uuid": None, "response": response}
+
+    except Exception as e:
+        # Catch other unexpected errors
+        msg = "An unexpected error occurred during login."
+        response = JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"message": msg})
+        return {"status": False, "uuid": None, "response": response}
+
+################
+
+#this function handles GET requests at root path (/) within previously defined router
+@router.get("/", response_class=JSONResponse) #response_class=JSONResponse specifies that the return value of the function should be automatically converted to a JSON response object
+async def authentication_page(request:Request): #asynchronous function (useful for handling non-blocking operations)
+    """
+    Provides a basic GET endpoint for authentication page, 
+        returning a simple success message in JSON format
+
+        Returns:
+            _type_: JSONResponse (with a success message)
+    """
+    try:
+        return JSONResponse(status_code=status.HTTP_200_OK, content={"message":"Authentication Page"})
+    ## Exception Handling - (old)
+    # except Exception as e:
+    #     raise e
+    except Exception as e:
+        # improved error handling based on potential exceptions
+        if isinstance(e, HTTPException):
+            # Handle known HTTP exceptions (e.g., user-caused errors)
+            return e
+        else:
+            # catch other unexpected errors
+            msg = "An unexpected error occurred during authentication."
+            response = JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"message": msg})
+            return response
+
+################
