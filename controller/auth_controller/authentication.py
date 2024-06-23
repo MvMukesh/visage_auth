@@ -223,11 +223,14 @@ async def login_for_access_token(response:Response,login) -> dict: #"login" obje
         
         ## Generating Access Token
         #calling create_access_token function (defined earlier) with user's UUID, username and token_expires to generate a JWT access token
-        token = create_access_token(user["UUID"],user["username"], expires_delta=token_expires)
+        token = create_access_token(user["UUID"],user["username"], 
+                                    expires_delta=token_expires)
         
         ## Setting Access Token Cookie
         #setting generated JWT token as a cookie named access_token in the user's response
-        response.set_cookie(key="access_token", value=token, httponly=True) #httponly=True flag ensures cookie cannot be accessed by JavaScript for enhanced security
+        response.set_cookie(key="access_token",
+                            value=token, 
+                            httponly=True) #httponly=True flag ensures cookie cannot be accessed by JavaScript for enhanced security
         
         ## Returning Success Response
         #returning a dictionary containing status=True, user's UUID and original response object
@@ -243,13 +246,15 @@ async def login_for_access_token(response:Response,login) -> dict: #"login" obje
     except ValueError as e:
         # Handle specific login validation errors (e.g., invalid credentials)
         msg = f"Login failed: {e}"
-        response = JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED, content={"message": msg})
+        response = JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED,
+                                content={"message": msg})
         return {"status": False, "uuid": None, "response": response}
 
     except Exception as e:
         # Catch other unexpected errors
         msg = "An unexpected error occurred during login."
-        response = JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"message": msg})
+        response = JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                                content={"message": msg})
         return {"status": False, "uuid": None, "response": response}
 
 ################
@@ -265,7 +270,8 @@ async def authentication_page(request:Request): #asynchronous function (useful f
             _type_: JSONResponse (with a success message)
     """
     try:
-        return JSONResponse(status_code=status.HTTP_200_OK, content={"message":"Authentication Page"})
+        return JSONResponse(status_code=status.HTTP_200_OK,
+                            content={"message":"Authentication Page"})
     ## Exception Handling - (old)
     # except Exception as e:
     #     raise e
@@ -277,7 +283,69 @@ async def authentication_page(request:Request): #asynchronous function (useful f
         else:
             # catch other unexpected errors
             msg = "An unexpected error occurred during authentication."
-            response = JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content={"message": msg})
+            response = JSONResponse(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                                    content={"message": msg})
             return response
 
 ################
+
+#function decorator defining a POST route at root path (/) within previously defined router (router)
+@router.post("/", response_class=JSONResponse)
+async def login(request:Request,login:Login): #response_class=JSONResponse specifies that the function should automatically convert its return value to a JSON response object
+    """
+    Handles user login requests and returns a JSON response 
+        indicating success or failure
+            OR
+    provides a robust approach to handling user login requests, 
+        differentiating between successful login, unsuccessful login due to incorrect credentials, and unexpected errors
+
+        Arguments:
+            request: Request: captures incoming HTTP request object
+            login: Login: receives data from request body, expected to be an instance of Login data model defined earlier
+                            this model likely contains user's email and password for login
+        Returns:
+            _type_: Login Response
+    """
+    try:
+        # response = RedirectResponse(url="/application/", status_code=status.HTTP_302_FOUND)
+        msg = "Login Successful"
+        response = JSONResponse(status_code=status.HTTP_200_OK, 
+                                content={"message": msg})
+        #calling login_for_access_token
+            # it handles login validation, token generation (if successful), and potentially sets access token as a cookie in response
+            # token_response will be a dictionary containing information about login attempt (e.g., status indicating success or failure, uuid of user if successful)
+        token_response = await login_for_access_token(response=response,
+                                                      login=login)
+        ## Handling Unsuccessful Login
+            #if token_response["status"] is False (indicating unsuccessful login), a new message ("Incorrect Username and password") is assigned to msg
+        if not token_response["status"]:
+            msg = "Incorrect Username and password"
+            # JSON response will be created with status code HTTP_401_UNAUTHORIZED, indicating unauthorized access due to incorrect credentials
+                #  response content includes "status": False and error message
+            return JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED,
+                                content={"status": False, "message": msg},)
+            # return RedirectResponse(url="/", status_code=status.HTTP_401_UNAUTHORIZED, headers={"msg": msg})
+        # msg = "Login Successfull"
+        # response = JSONResponse(status_code=status.HTTP_200_OK, content={"message": msg}, headers={"uuid": "abda"})
+        
+        ## Setting User UUID (Successful Login)
+            #Assuming token_response["status"] is True (successful login), user's uuid is extracted from token_response["uuid"]
+                #this uuid is then set as a header in response object using response.headers["uuid"] = token_response["uuid"]
+        response.headers["uuid"] = token_response["uuid"]
+        
+        ##Returning Response
+            # response object will be returned, containing appropriate status code, message, and potentially user's uuid in header (for successful login) 
+        return response
+
+    ##Exception Handling
+    except HTTPException:
+        msg = "UnKnown Error"
+        return JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED,
+                            content={"status":False, "message":msg},)
+        # return RedirectResponse(url="/", status_code=status.HTTP_401_UNAUTHORIZED, headers={"msg": msg})
+    except Exception as e:
+        msg = "User NOT Found"
+        response = JSONResponse(status_code=status.HTTP_404_NOT_FOUND,
+                                content={"status": False, "message": msg},)
+        return response
+
