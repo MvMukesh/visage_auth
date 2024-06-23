@@ -76,19 +76,27 @@ async def get_current_user(request: Request):
         secret_key = SECRET_KEY
         algorithm = ALGORITHM
 
+        #get access_token from user's cookies
         token = request.cookies.get("access_token")
+        #If no token is found return none, indicating user is not authenticated
         if token is None:
             return None
 
+        #If a token is present decode token based on secret key and algorithm
+            # defined in the face_auth.constant.auth_constant module
         payload = jwt.decode(token, secret_key, algorithms=[algorithm])
         uuid: str = payload.get("sub")
         username: str = payload.get("username")
 
+        #if uuid or username is missing then logout
         if uuid is None or username is None:
             return logout(request)
-        return {"uuid": uuid, "username": username}
+        #if all good return this of current user
+        return {"uuid": uuid, "username": username} 
+    #JWTEroor handling - Case-1
     except JWTError:
         raise HTTPException(status_code=404, detail="Detail Not Found")
+    #Exception handling - Case-2
     except Exception as e:
         msg = "Error while getting current user"
         response = JSONResponse(
