@@ -42,7 +42,7 @@ The router utilizes pre-defined data models for user login and registration info
 """
 #defining a router - creating instance of APIRouter from FastAPI
 router = APIRouter(prefix="/auth",tags=["auth"],
-                   responses={"401": {"description": "Not Authorized!!!"}},)
+                   responses={"401": {"description":"Not Authorized!!!"}},)
 """
 prefix="/auth": This sets the base path for all routes defined within this router.
     Any route defined here will start with /auth
@@ -55,4 +55,80 @@ responses={"401": {"description": "Not Authorized!!!"}}:
     This response will be automatically sent if a route within this router 
     encounters an authorization error (e.g., invalid token)
         Say you dont have account and you are loging in.
+"""
+
+############
+
+"""
+defining a function named get_current_user, this retrieves 
+    currently logged-in userinformation 
+Also using JWT (JSON Web Token) for authentication
+"""
+# Calling the logger for Database read and insert operations
+async def get_current_user(request: Request):
+    """
+        Args:
+            request (Request): Request from route
+        Returns:
+            dict: Returns username and uuid of user
+    """
+    try:
+        secret_key = SECRET_KEY
+        algorithm = ALGORITHM
+
+        token = request.cookies.get("access_token")
+        if token is None:
+            return None
+
+        payload = jwt.decode(token, secret_key, algorithms=[algorithm])
+        uuid: str = payload.get("sub")
+        username: str = payload.get("username")
+
+        if uuid is None or username is None:
+            return logout(request)
+        return {"uuid": uuid, "username": username}
+    except JWTError:
+        raise HTTPException(status_code=404, detail="Detail Not Found")
+    except Exception as e:
+        msg = "Error while getting current user"
+        response = JSONResponse(
+            status_code=status.HTTP_404_NOT_FOUND, content={"message": msg})
+        return response
+
+"""
+Functionality:
+1. Retrieving Access Token:
+
+- function attempts to get the access_token from the user's cookies using 
+    request.cookies.get("access_token").
+- if no token is found, the function returns None, indicating the user is 
+    not authenticated.
+
+2. JWT Decoding (if Token Exists):
+
+- if a token is present, function uses jwt.decode from the jose library to 
+    decode the token based on the secret key (SECRET_KEY) and algorithm (ALGORITHM) 
+    defined in the face_auth.constant.auth_constant module
+- this decoding process retrieves the payload embedded within the token
+
+3. Extracting User Information:
+
+- function attempts to extract two pieces of information from decoded payload:
+    - uuid: This is likely a unique identifier for user
+    - username: user's username
+- if either uuid or username is missing, function will call logout function 
+    to potentially clear any invalid tokens and returns None
+
+4. Returning User Information:
+
+- if everything is successful, function returns a dictionary containing
+     retrieved uuid and username for current user
+
+5. Error Handling:
+
+function includes exception handling for two cases:
+    - JWTError: if token decoding fails (e.g., invalid token), an HTTPException 
+        with status code 404 (Not Found) and a detail message is raised
+    - Exception: Any other unexpected exception is caught, and a generic error message 
+        is returned in a JSON response with status code 404 (Not Found)
 """
