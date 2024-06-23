@@ -348,4 +348,24 @@ async def login(request:Request,login:Login): #response_class=JSONResponse speci
         response = JSONResponse(status_code=status.HTTP_404_NOT_FOUND,
                                 content={"status": False, "message": msg},)
         return response
+    
+################
+    
+ #host rout for register | in fron-end implementation response_class must be html
+@router.get("/register",response_class=JSONResponse)
+async def authentication_page(request: Request):
+    """
+    Route for User Registration
+                OR
+    Handling user registration
+
+        request: Request. captures incoming HTTP request object containing details about current request
+        Returns:
+            _type_: Register Response
+    """
+    try:
+        return JSONResponse(status_code=status.HTTP_200_OK,content={"message":"Registration Page"})
+    except Exception as e:
+        raise e   
+
 
