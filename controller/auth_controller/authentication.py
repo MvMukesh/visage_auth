@@ -78,12 +78,12 @@ async def get_current_user(request: Request):
 
         #get access_token from user's cookies
         token = request.cookies.get("access_token")
-        #If no token is found return none, indicating user is not authenticated
+        #if no token is found return none, indicating user is not authenticated
         if token is None:
             return None
 
         #If a token is present decode token based on secret key and algorithm
-            # defined in the face_auth.constant.auth_constant module
+            # defined in face_auth.constant.auth_constant module
         payload = jwt.decode(token, secret_key, algorithms=[algorithm])
         uuid: str = payload.get("sub")
         username: str = payload.get("username")
@@ -140,3 +140,5 @@ function includes exception handling for two cases:
     - Exception: Any other unexpected exception is caught, and a generic error message 
         is returned in a JSON response with status code 404 (Not Found)
 """
+
+################
