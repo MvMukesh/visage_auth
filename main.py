@@ -4,9 +4,9 @@ from starlette import status #Provides HTTP status codes for responses
 from starlette.responses import RedirectResponse #creates a redirect response
 from starlette.middleware.sessions import SessionMiddleware #Middleware for managing user sessions
 
-from contrcller.app_controller import application
-from contrcller.auth_controller import authenticate
-from face_auth.constant.application import APP_HOST, APP_PORT
+from controller.app_controller import application
+from controller.auth_controller import authenticate
+from visage_auth.constant.application import APP_HOST, APP_PORT
 
 
 app = FastAPI()
