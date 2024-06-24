@@ -351,7 +351,6 @@ async def login(request:Request,login:Login): #response_class=JSONResponse speci
     
 ################
     
- #host rout for register | in fron-end implementation response_class must be html
 @router.get("/register",response_class=JSONResponse)
 async def authentication_page(request: Request):
     """
@@ -368,4 +367,59 @@ async def authentication_page(request: Request):
     except Exception as e:
         raise e   
 
+################
 
+#get rout for register || In fron-end implementation response_class must be html now it is JSONResponse)
+@router.post("/register",response_class=JSONResponse)
+async def register_user(request:Request,register:Register):
+
+    """
+        Post request to register a user
+
+        Args:
+            request (Request): Request Object
+            register (Register):    Name: str
+                                    username: str
+                                    email_id: str
+                                    ph_no: int
+                                    password1: str
+                                    password2: str
+        Raises:
+            e: If user registration fails
+
+        Returns:
+            _type_: Will redirect to the embedding generation route and return the UUID of user
+    """
+    try:
+        name = register.Name
+        username = register.username
+        password1 = register.password1
+        password2 = register.password2
+        email_id = register.email_id
+        ph_no = register.ph_no
+
+        # add uuid to the session (passing to User Entity, will get UUID)
+        user = User(name,username,email_id,ph_no,password1,password2) #using User class from user.py
+        request.session["uuid"] = user.uuid_ #storing UUID in session
+
+        # Validation of user input data to check the format of the data
+        user_registration = RegisterValidation(user)
+
+        validate_regitration = user_registration.validate_registration()
+        if not validate_regitration["status"]:
+            msg = validate_regitration["msg"]
+            response = JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED,content={"status":False,"message":msg},)
+            return response
+
+        # Save user if the validation is successful
+        validation_status = user_registration.authenticate_user_registration()
+
+        msg = "Registration Successful...Please Login to continue"
+        response = JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content={"status":True,"message":validation_status["msg"]},
+            headers={"uuid":user.uuid_},)
+        return response
+    
+    except Exception as e:
+        raise e
