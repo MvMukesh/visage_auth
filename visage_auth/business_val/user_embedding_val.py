@@ -15,12 +15,46 @@ from visage_auth.constant.embedding_constants import (DETECTOR_BACKEND,
                                                     SIMILARITY_THRESHOLD)
 
 
+class UserLoginEmbeddingValidation:
+    def __init__(self,uuid_:str) -> None:
+        self.uuid_ = uuid_
+        self.user_embedding_data = UserEmbeddingData()
+        self.user = self.user_embedding_data.get_user_embedding(uuid_)
+
+    def validate(self) -> bool:
+        try:
+            if self.user["UUID"] == None:
+                return False
+            if self.user["user_embed"]==None:
+                return False
+            return True
+        
+        except Exception as e:
+            raise e
+
+
+    @staticmethod
+    def generate_embedding(img_array:np.ndarray) -> np.ndarray:
+        """
+            Generate embedding from image array
+        """
+        try:
+            faces = detect_face(img_array,detector_backend=DETECTOR_BACKEND,
+                                enforce_detection=ENFORCE_DETECTION,)
+            # Generate embedding from face
+            embed = DeepFace.represent(img_path=faces[0],model_name=EMBEDDING_MODEL_NAME,
+                                       enforce_detection=False,)
+            return embed
+        except Exception as e:
+            raise AppException(e,sys) from e
+
+
 class UserRegisterEmbeddingValidation:
-    def __init__(self, uuid_:str) -> None:
+    def __init__(self,uuid_:str) -> None:
         self.uuid_ = uuid_
         self.user_embedding_data = UserEmbeddingData()
 
-    def save_embedding(self, files:bytes):
+    def save_embedding(self,files:bytes):
         """
             This function will generate embedding list and save it to database
             Args:
@@ -35,4 +69,4 @@ class UserRegisterEmbeddingValidation:
             self.user_embedding_data.save_user_embedding(self.uuid_, avg_embedding_list)
         
         except Exception as e:
-            raise AppException(e, sys) from e
+            raise AppException(e,sys) from e
