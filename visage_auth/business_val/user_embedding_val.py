@@ -16,11 +16,11 @@ from visage_auth.constant.embedding_constants import (DETECTOR_BACKEND,
 
 
 class UserRegisterEmbeddingValidation:
-    def __init__(self, uuid_: str) -> None:
+    def __init__(self, uuid_:str) -> None:
         self.uuid_ = uuid_
         self.user_embedding_data = UserEmbeddingData()
 
-    def save_embedding(self, files: bytes):
+    def save_embedding(self, files:bytes):
         """
             This function will generate embedding list and save it to database
             Args:
