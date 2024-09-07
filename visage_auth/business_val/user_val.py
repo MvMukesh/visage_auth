@@ -3,7 +3,7 @@ import re
 import sys
 from typing import Optional
 
-from passlib.context import CryptContext
+from passlib.context import CryptContext #hashing password
 
 from visage_auth.logger import logging
 from visage_auth.entity.user import User
@@ -183,15 +183,15 @@ class RegisterValidation:
             return False
 
     def is_details_exists(self) -> bool:
-        username_val = self.userdata.get_user({"username": self.user.username})
-        emailid_val = self.userdata.get_user({"email_id": self.user.email_id})
-        uuid_val = self.userdata.get_user({"UUID": self.uuid})
+        username_val = self.userdata.get_user({"username":self.user.username})
+        emailid_val = self.userdata.get_user({"email_id":self.user.email_id})
+        uuid_val = self.userdata.get_user({"UUID":self.uuid})
         if username_val==None and emailid_val==None and uuid_val==None:
             return True
         return False
 
     @staticmethod
-    def get_password_hash(password: str) -> str:
+    def get_password_hash(password:str) -> str:
         return bcrypt_context.hash(password)
 
     def validate_registration(self) -> bool:
@@ -200,7 +200,7 @@ class RegisterValidation:
         """
         if len(self.validate()) != 0:
             return {"status":False, "msg":self.validate()}
-        return {"status": True}
+        return {"status":True}
 
     def authenticate_user_registration(self) -> bool:
         """
@@ -214,22 +214,22 @@ class RegisterValidation:
             if self.validate_registration()["status"]:
                 logging.info("Generating the password hash.....")
                 hashed_password: str = self.get_password_hash(self.user.password1)
-                user_data_dict: dict = {"Name": self.user.Name,
-                                        "username": self.user.username,
-                                        "password": hashed_password,
-                                        "email_id": self.user.email_id,
-                                        "ph_no": self.user.ph_no,
-                                        "UUID": self.uuid,
+                user_data_dict: dict = {"Name":self.user.Name,
+                                        "username":self.user.username,
+                                        "password":hashed_password,
+                                        "email_id":self.user.email_id,
+                                        "ph_no":self.user.ph_no,
+                                        "UUID":self.uuid,
                                         }
                 
                 logging.info("Saving the user details in the database.....")
                 self.userdata.save_user(user_data_dict)
                 logging.info("Saving the user details in the database completed.....")
                 
-                return {"status": True, "msg": "User registered successfully"}
+                return {"status":True, "msg":"User registered successfully"}
             
             logging.info("Validation failed while Registration.....")
             
-            return {"status": False, "msg": self.validate()}
+            return {"status":False, "msg":self.validate()}
         except Exception as e:
             raise e
