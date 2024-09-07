@@ -99,3 +99,93 @@ class LoginValidation:
             raise AppException(e, sys) from e
 
 
+class RegisterValidation:
+    """
+    Authenticates user and returns status
+    """
+    def __init__(self, user: User) -> None:
+        try:
+            self.user = user
+            self.regex = re.compile(r"([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+")
+            self.uuid = self.user.uuid_
+            self.userdata = UserData()
+            self.bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        except Exception as e:
+            raise e
+
+    def validate(self) -> bool:
+
+        """
+        Checks all validation conditions for user registration
+
+        Returns:
+            _type_: string
+        """
+        try:
+            msg = ""
+            if self.user.Name == None:
+                msg += "Name is required"
+
+            if self.user.username == None:
+                msg += "Username is required"
+
+            if self.user.email_id == None:
+                msg += "Email is required"
+
+            if self.user.ph_no == None:
+                msg += "Phone Number is required"
+
+            if self.user.password1 == None:
+                msg += "Password is required"
+
+            if self.user.password2 == None:
+                msg += "Confirm Password is required"
+
+            if not self.is_email_valid():
+                msg += "Email is not valid"
+
+            if not self.is_password_valid():
+                msg += "Length of the pass`word should be between 8 and 16"
+
+            if not self.is_password_match():
+                msg += "Password does not match"
+
+            if not self.is_details_exists():
+                msg += "User already exists"
+
+            return msg
+        except Exception as e:
+            raise e
+
+    def is_email_valid(self) -> bool:
+        """
+        Validates email id
+
+        Returns:
+            bool: True if email id is valid else False
+        """
+        if re.fullmatch(self.regex,self.user.email_id):
+            return True
+        else:
+            return False
+
+    def is_password_valid(self) -> bool:
+        if len(self.user.password1) >= 8 and len(self.user.password2) <= 16:
+            return True
+        else:
+            return False
+
+    def is_password_match(self) -> bool:
+        if self.user.password1 == self.user.password2:
+            return True
+        else:
+            return False
+
+    def is_details_exists(self) -> bool:
+        username_val = self.userdata.get_user({"username": self.user.username})
+        emailid_val = self.userdata.get_user({"email_id": self.user.email_id})
+        uuid_val = self.userdata.get_user({"UUID": self.uuid})
+        if username_val==None and emailid_val==None and uuid_val==None:
+            return True
+        return False
+
