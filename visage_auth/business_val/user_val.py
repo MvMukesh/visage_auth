@@ -213,8 +213,8 @@ class RegisterValidation:
             logging.info("Validating the user details while Registration.....")
             if self.validate_registration()["status"]:
                 logging.info("Generating the password hash.....")
-                hashed_password: str = self.get_password_hash(self.user.password1)
-                user_data_dict: dict = {"Name":self.user.Name,
+                hashed_password:str = self.get_password_hash(self.user.password1)
+                user_data_dict:dict = {"Name":self.user.Name,
                                         "username":self.user.username,
                                         "password":hashed_password,
                                         "email_id":self.user.email_id,
