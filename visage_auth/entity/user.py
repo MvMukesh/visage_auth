@@ -1,4 +1,4 @@
-#UUID is unique key for each user (User Entity)
+## --- (User Entity) UUID is unique key for each user 
 import uuid
 
 
