@@ -29,13 +29,13 @@ async def register_embedding(request: Request,
     """
 
     try:
-        # Get the UUID from the session
+        ###--- Get UUID from session
         uuid = request.session.get("uuid")
         if uuid is None:
             return RedirectResponse(url="/auth", status_code=status.HTTP_302_FOUND)
         user_embedding_validation = UserRegisterEmbeddingValidation(uuid)
 
-        # Save the embeddings
+        ###--- Save embeddings
         user_embedding_validation.save_embedding(files)
 
         msg = "Embedding Stored Successfully in Database"
