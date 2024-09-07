@@ -4,7 +4,8 @@ import uuid
 
 #initealy keeping UUID NONE
 class User:
-    def __init__(self,Name:str,username:str,email_id:str,ph_no:str,password1:str,password2:str,uuid_:str=None,):
+    def __init__(self,Name:str,username:str,email_id:str,ph_no:str,
+                 password1:str,password2:str,uuid_:str=None,):
         self.Name = Name
         self.username = username
         self.email_id = email_id
