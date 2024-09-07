@@ -1,12 +1,12 @@
 from typing import Optional
 from jose import JWTError, jwt #provide functions for creating and decoding JWT tokens used in authentication
 from pydantic import BaseModel
-from face_auth.entity.user import User
+from visage_auth.entity.user import User
 from datetime import datetime, timedelta
 from starlette.responses import JSONResponse, RedirectResponse
 from fastapi import APIRouter, HTTPException, Request, Response, status
-from face_auth.business_val.user_val import LoginValidation, RegisterValidation
-from face_auth.constant.auth_constant import ALGORITHM, SECRET_KEY
+from visage_auth.business_val.user_val import LoginValidation, RegisterValidation
+from visage_auth.constant.auth_constant import ALGORITHM, SECRET_KEY
 
 
 
@@ -83,7 +83,7 @@ async def get_current_user(request: Request):
             return None
 
         #If a token is present decode token based on secret key and algorithm
-            # defined in face_auth.constant.auth_constant module
+            # defined in visage_auth.constant.auth_constant module
         payload = jwt.decode(token, secret_key, algorithms=[algorithm])
         uuid: str = payload.get("sub")
         username: str = payload.get("username")
@@ -116,7 +116,7 @@ Functionality:
 
 - if a token is present, function uses jwt.decode from the jose library to 
     decode the token based on the secret key (SECRET_KEY) and algorithm (ALGORITHM) 
-    defined in the face_auth.constant.auth_constant module
+    defined in the visage_auth.constant.auth_constant module
 - this decoding process retrieves the payload embedded within the token
 
 3. Extracting User Information:
@@ -369,7 +369,7 @@ async def authentication_page(request: Request):
 
 ################
 
-#get rout for register || In fron-end implementation response_class must be html now it is JSONResponse)
+#get rout for registering || In fron-end implementation response_class must be html now it is JSONResponse)
 @router.post("/register",response_class=JSONResponse)
 async def register_user(request:Request,register:Register):
 
@@ -402,7 +402,7 @@ async def register_user(request:Request,register:Register):
         user = User(name,username,email_id,ph_no,password1,password2) #using User class from user.py
         request.session["uuid"] = user.uuid_ #storing UUID in session
 
-        # Validation of user input data to check the format of the data
+        # Validation of user input data to check format of data
         user_registration = RegisterValidation(user)
 
         validate_regitration = user_registration.validate_registration()
@@ -411,14 +411,13 @@ async def register_user(request:Request,register:Register):
             response = JSONResponse(status_code=status.HTTP_401_UNAUTHORIZED,content={"status":False,"message":msg},)
             return response
 
-        # Save user if the validation is successful
+        # Save user if validation is successful
         validation_status = user_registration.authenticate_user_registration()
 
         msg = "Registration Successful...Please Login to continue"
-        response = JSONResponse(
-            status_code=status.HTTP_200_OK,
-            content={"status":True,"message":validation_status["msg"]},
-            headers={"uuid":user.uuid_},)
+        response = JSONResponse(status_code=status.HTTP_200_OK,
+                                content={"status":True,"message":validation_status["msg"]},
+                                headers={"uuid":user.uuid_},)
         return response
     
     except Exception as e:
