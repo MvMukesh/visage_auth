@@ -1,3 +1,4 @@
+### --- Validating registration
 import re
 import sys
 from typing import Optional
