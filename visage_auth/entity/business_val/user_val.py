@@ -189,3 +189,46 @@ class RegisterValidation:
             return True
         return False
 
+    @staticmethod
+    def get_password_hash(password: str) -> str:
+        return bcrypt_context.hash(password)
+
+    def validate_registration(self) -> bool:
+        """
+        Checks all validation conditions for user registration
+        """
+        if len(self.validate()) != 0:
+            return {"status":False, "msg":self.validate()}
+        return {"status": True}
+
+    def authenticate_user_registration(self) -> bool:
+        """
+        Saves user details in database only after validating user details
+
+        Returns:
+            bool: _description_
+        """
+        try:
+            logging.info("Validating the user details while Registration.....")
+            if self.validate_registration()["status"]:
+                logging.info("Generating the password hash.....")
+                hashed_password: str = self.get_password_hash(self.user.password1)
+                user_data_dict: dict = {"Name": self.user.Name,
+                                        "username": self.user.username,
+                                        "password": hashed_password,
+                                        "email_id": self.user.email_id,
+                                        "ph_no": self.user.ph_no,
+                                        "UUID": self.uuid,
+                                        }
+                
+                logging.info("Saving the user details in the database.....")
+                self.userdata.save_user(user_data_dict)
+                logging.info("Saving the user details in the database completed.....")
+                
+                return {"status": True, "msg": "User registered successfully"}
+            
+            logging.info("Validation failed while Registration.....")
+            
+            return {"status": False, "msg": self.validate()}
+        except Exception as e:
+            raise e
