@@ -6,7 +6,8 @@
 
 <img src="https://img.shields.io/badge/Domain%20-MFA-blue.svg" ><img src="https://img.shields.io/badge/Computer%20Vision-orange.svg">  <img src="https://img.shields.io/badge/Library Used%20-DeepFace-blue.svg" ><img src="https://img.shields.io/badge/MTCNN-yellow.svg"><img src="https://img.shields.io/badge/FaceNet-yellow.svg">  <img src=https://img.shields.io/badge/Built%20using-Python-yellow><img src="https://img.shields.io/badge/-Html5-orange"><img src="https://img.shields.io/badge/JavaScript-blue"><img src="https://img.shields.io/badge/-Bootstrap-blueviolet">  <img src="https://img.shields.io/badge/Web Frameworks%20-FastAPI-green"><img src="https://img.shields.io/badge/-Starlette-green">
 
-
+<hr> 
+</hr>
 Visag.auth app is a multi-factor authentication (MFA) systems that require both password login and face recognition for authentication. 
 - These types of systems are highly secure and can be applied across various domains where security and user authentication are critical
 
