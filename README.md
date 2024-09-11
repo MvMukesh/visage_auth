@@ -1,5 +1,10 @@
 # visage.auth
 
+<p align="center">
+  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='310' width='500'> </kbd>
+</p>
+
+
 Visag.auth app is a multi-factor authentication (MFA) systems that require both password login and face recognition for authentication. 
 - These types of systems are highly secure and can be applied across various domains where security and user authentication are critical
 
