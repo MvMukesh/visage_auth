@@ -1,5 +1,5 @@
 <p align="center">
-  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='340' width='700'> </kbd>
+  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='330' width='600'> </kbd>
 </p>
 
 <h2>
