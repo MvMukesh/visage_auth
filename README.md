@@ -1,10 +1,16 @@
-# `visage.auth`
-
 <p align="center">
-  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='310' width='500'> </kbd>
+  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='340' width='700'> </kbd>
 </p>
 
+<h2>
+    <p align="center">
+     ⚡ visage.auth ⚡
+    </p>
+</h2>
+
+<p align="center">
 <img src="https://img.shields.io/badge/Domain%20-MFA-blue.svg" ><img src="https://img.shields.io/badge/Computer%20Vision-orange.svg">  <img src="https://img.shields.io/badge/Library Used%20-DeepFace-blue.svg" ><img src="https://img.shields.io/badge/MTCNN-yellow.svg"><img src="https://img.shields.io/badge/FaceNet-yellow.svg">  <img src=https://img.shields.io/badge/Built%20using-Python-yellow><img src="https://img.shields.io/badge/-Html5-orange"><img src="https://img.shields.io/badge/JavaScript-blue"><img src="https://img.shields.io/badge/-Bootstrap-blueviolet">  <img src="https://img.shields.io/badge/Web Frameworks%20-FastAPI-green"><img src="https://img.shields.io/badge/-Starlette-green">
+</p>
 
 <hr> 
 </hr>
