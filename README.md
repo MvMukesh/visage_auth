@@ -38,7 +38,9 @@ By incorporating both password login and face recognition, this system exemplifi
 
 <h3>
 <p align="center">
-  Architecture
+  <u>
+    Architecture
+  </u>
 </p>
 </h3>
 <p align="center">
