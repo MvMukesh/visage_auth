@@ -37,6 +37,6 @@ By incorporating both password login and face recognition, this system exemplifi
 </hr>
 
 <p align="center">
-  <kbd><img src="https://github.com/user-attachments/assets/e4e973a9-b469-45ac-990b-200e69765d07" height='380' width='700'> </kbd>
+  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/architecture.png" height='380' width='700'> </kbd>
 </p>
 
