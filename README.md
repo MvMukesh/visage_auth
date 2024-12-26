@@ -1,8 +1,9 @@
 [![GitHub Issues](https://img.shields.io/github/issues/MvMukesh/visage.auth.svg) ![GitHub followers](https://img.shields.io/github/followers/MvMukesh.svg?style=social\&label=Follow\&maxAge=2592000)](https://github.com/MvMukesh?tab=followers) [![GitHub forks](https://img.shields.io/github/forks/MvMukesh/visage.auth.svg?style=social\&label=Fork\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/network/) [![GitHub stars](https://img.shields.io/github/stars/MvMukesh/visage.auth.svg?style=social\&label=Star\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/stargazers/)
 
 <p align="center">
-  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='330' width='600'> </kbd>
+  <kbd><img src="https://github.com/user-attachments/assets/6433c05b-55ea-4aee-80d3-76090b01fc2e" height='330' width='600'> </kbd>
 </p>
+
 
 <h2>
     <p align="center">
@@ -31,3 +32,11 @@ By incorporating both password login and face recognition, this system exemplifi
 
 `Decision Support Systems`(DSS) are vital tools that combine data, analytical models and user-friendly interfaces to support complex decision-making processes
 - They are used across various industries to improve efficiency, enhance collaboration, and ultimately lead to better, data-driven decisions
+
+<hr>
+</hr>
+
+<p align="center">
+  <kbd><img src="https://github.com/user-attachments/assets/e4e973a9-b469-45ac-990b-200e69765d07" height='380' width='700'> </kbd>
+</p>
+
