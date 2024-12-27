@@ -39,11 +39,14 @@ By incorporating both password login and face recognition, this system exemplifi
 <h3>
 <p align="center">
   <u>
-    Architecture
+    System Architecture
   </u>
 </p>
 </h3>
 <p align="center">
-  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/architecture.png" height='380' width='700'> </kbd>
+  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/system_architecture_diag.png" height='400' width='700'> </kbd>
 </p>
+
+* <u>Top Box</u>: Represents a simpler scenario where a `Single user` registers and uses system on their own device
+* <u>Bottom Box</u>: Represents a more complex scenario where `Multiple users` can register and use system from different devices
 
