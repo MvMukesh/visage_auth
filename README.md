@@ -51,6 +51,10 @@ A multi-domain MFA systems for High Security
 Visag.auth app is a multi-factor authentication (MFA) systems that require both password login and face recognition for authentication. 
 - These types of systems are highly secure and can be applied across various domains where security and user authentication are critical
 
+<p align="center">
+  <kbd><img src="https://github.com/user-attachments/assets/8c19aad1-e47b-4ddd-a0d2-d44fd8355d71" height='300' width='600'> </kbd>
+</p>
+
 By incorporating both password login and face recognition, this system exemplifies a `Knowledge-Driven Decision Support System` (DSS)
 - It leverages expert knowledge and complex decision-making rules to provide a secure and reliable authentication mechanism
 - This multi-factor approach enhances security and ensures that only authorized users gain access to the system
