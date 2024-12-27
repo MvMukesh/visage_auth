@@ -1,5 +1,6 @@
 [![GitHub Issues](https://img.shields.io/github/issues/MvMukesh/visage.auth.svg) ![GitHub followers](https://img.shields.io/github/followers/MvMukesh.svg?style=social\&label=Follow\&maxAge=2592000)](https://github.com/MvMukesh?tab=followers) [![GitHub forks](https://img.shields.io/github/forks/MvMukesh/visage.auth.svg?style=social\&label=Fork\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/network/) [![GitHub stars](https://img.shields.io/github/stars/MvMukesh/visage.auth.svg?style=social\&label=Star\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/stargazers/)
 
+
 <p align="center">
   <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='300' width='600'> </kbd>
 </p>
@@ -50,3 +51,21 @@ By incorporating both password login and face recognition, this system exemplifi
 * <u>Top Box</u>: Represents a simpler scenario where a `Single user` registers and uses system on their own device
 * <u>Bottom Box</u>: Represents a more complex scenario where `Multiple users` can register and use system from different devices
 
+<!--Footer -->
+
+<div align="center"> 
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/mukesh-manral/"><img src="https://img.shields.io/badge/LinkedIn-411AFF?style=for-the-badge&logo=LinkedIn&logoColor=white" /></a>  
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.youtube.com/@manralai"><img src="https://img.shields.io/badge/Youtube-411AFF?style=for-the-badge&logo=Youtube&logoColor=white" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://medium.com/@manralai/lists"><img src="https://img.shields.io/badge/Medium-411AFF?style=for-the-badge&logo=Medium&logoColor=white" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="https://www.instagram.com/manralai/"><img src="https://img.shields.io/badge/Instagram-411AFF?style=for-the-badge&logo=Instagram&logoColor=white" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="https://www.kaggle.com/mukeshmanral"><img src="https://img.shields.io/badge/Kaggle-411AFF?style=for-the-badge&logo=Kaggle&logoColor=white" /></a>
+<!-- <a href="https://discord.user"><img alt="discord_logo" src="https://img.shields.io/badge/Discord-411AFF?style=for-the-badge&logo=discord&logoColor=white"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+#<a href="https://twitter.com/WebXDAO"> <img src="https://img.shields.io/badge/X_(Twitter)-411AFF?style=for-the-badge&logo=x&logoColor=white" />
+</a> -->
+</div>
