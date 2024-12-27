@@ -351,7 +351,7 @@ async def login(request:Request,login:Login): #response_class=JSONResponse speci
     
 ################
     
-@router.get("/register",response_class=JSONResponse)
+@router.get("/register",response_class=JSONResponse)#for frontend part there will be HTMLResponse 
 async def authentication_page(request: Request):
     """
     Route for User Registration
@@ -363,13 +363,14 @@ async def authentication_page(request: Request):
             _type_: Register Response
     """
     try:
-        return JSONResponse(status_code=status.HTTP_200_OK,content={"message":"Registration Page"})
+        return JSONResponse(status_code=status.HTTP_200_OK,
+                            content={"message":"Registration Page"})
     except Exception as e:
         raise e   
 
 ################
 
-#get rout for registering || In fron-end implementation response_class must be html now it is JSONResponse)
+#get rout for registering || In front-end implementation response_class must be html now it is JSONResponse)
 @router.post("/register",response_class=JSONResponse)
 async def register_user(request:Request,register:Register):
 
@@ -398,11 +399,11 @@ async def register_user(request:Request,register:Register):
         email_id = register.email_id
         ph_no = register.ph_no
 
-        # add uuid to the session (passing to User Entity, will get UUID)
+        # add uuid to session (passing to User Entity, will get UUID)
         user = User(name,username,email_id,ph_no,password1,password2) #using User class from user.py
         request.session["uuid"] = user.uuid_ #storing UUID in session
 
-        # Validation of user input data to check format of data
+        # "validate_registration" for validation of user input data basically to check format of data
         user_registration = RegisterValidation(user)
 
         validate_regitration = user_registration.validate_registration()
