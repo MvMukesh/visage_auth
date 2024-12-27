@@ -86,7 +86,7 @@ By incorporating both password login and face recognition, this system exemplifi
 </p>
 </h3>
 <p align="center">
-  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/system_architecture_diag.png" height='400' width='700'> </kbd>
+  <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/system_architecture_diag.png" height='440' width='700'> </kbd>
 </p>
 
 * <u>Top Box</u>: Represents a simpler scenario where a `Single user` registers and uses system on their own device
