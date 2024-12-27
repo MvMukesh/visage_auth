@@ -23,6 +23,10 @@
     </p>
 </h2>
 
+<a href="https://manralai.medium.com/face-recognition-in-mfa-the-next-big-thing-end2end-implementation-e2052473b831"><img src="https://img.shields.io/badge/MoreInformation-411AFF?style=for-the-badge&logo=Medium&logoColor=white" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+
+
 
 [![GitHub Issues](https://img.shields.io/github/issues/MvMukesh/visage.auth.svg) ![GitHub followers](https://img.shields.io/github/followers/MvMukesh.svg?style=social\&label=Follow\&maxAge=2592000)](https://github.com/MvMukesh?tab=followers) [![GitHub forks](https://img.shields.io/github/forks/MvMukesh/visage.auth.svg?style=social\&label=Fork\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/network/) [![GitHub stars](https://img.shields.io/github/stars/MvMukesh/visage.auth.svg?style=social\&label=Star\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/stargazers/)
 
