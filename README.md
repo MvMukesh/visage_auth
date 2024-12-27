@@ -1,3 +1,29 @@
+<!--Head -->
+
+<div align="center"> 
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/mukesh-manral/"><img src="https://img.shields.io/badge/LinkedIn-411AFF?style=for-the-badge&logo=LinkedIn&logoColor=white" /></a>  
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.youtube.com/@manralai"><img src="https://img.shields.io/badge/Youtube-411AFF?style=for-the-badge&logo=Youtube&logoColor=white" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://medium.com/@manralai/lists"><img src="https://img.shields.io/badge/Medium-411AFF?style=for-the-badge&logo=Medium&logoColor=white" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="https://www.instagram.com/manralai/"><img src="https://img.shields.io/badge/Instagram-411AFF?style=for-the-badge&logo=Instagram&logoColor=white" /></a>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+<a href="https://www.kaggle.com/mukeshmanral"><img src="https://img.shields.io/badge/Kaggle-411AFF?style=for-the-badge&logo=Kaggle&logoColor=white" /></a>
+<!-- <a href="https://discord.user"><img alt="discord_logo" src="https://img.shields.io/badge/Discord-411AFF?style=for-the-badge&logo=discord&logoColor=white"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp; 
+#<a href="https://twitter.com/WebXDAO"> <img src="https://img.shields.io/badge/X_(Twitter)-411AFF?style=for-the-badge&logo=x&logoColor=white" />
+</a> -->
+</div>
+
+<h2>
+    <p align="center">
+     ⚡ Visage Auth ⚡
+    </p>
+</h2>
+
+
 [![GitHub Issues](https://img.shields.io/github/issues/MvMukesh/visage.auth.svg) ![GitHub followers](https://img.shields.io/github/followers/MvMukesh.svg?style=social\&label=Follow\&maxAge=2592000)](https://github.com/MvMukesh?tab=followers) [![GitHub forks](https://img.shields.io/github/forks/MvMukesh/visage.auth.svg?style=social\&label=Fork\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/network/) [![GitHub stars](https://img.shields.io/github/stars/MvMukesh/visage.auth.svg?style=social\&label=Star\&maxAge=2592000)](https://github.com/MvMukesh/visage.auth/stargazers/)
 
 
@@ -5,12 +31,6 @@
   <kbd><img src="https://github.com/MvMukesh/visage.auth/blob/main/visage_auth.png" height='300' width='600'> </kbd>
 </p>
 
-
-<h2>
-    <p align="center">
-     ⚡ visage.auth ⚡
-    </p>
-</h2>
 
 <p align="center">
 <img src="https://img.shields.io/badge/Domain%20-MFA-blue.svg" ><img src="https://img.shields.io/badge/Computer%20Vision-orange.svg">  <img src="https://img.shields.io/badge/Library Used%20-DeepFace-blue.svg" ><img src="https://img.shields.io/badge/MTCNN-yellow.svg"><img src="https://img.shields.io/badge/FaceNet-yellow.svg">  <img src=https://img.shields.io/badge/Built%20using-Python-yellow><img src="https://img.shields.io/badge/-Html5-orange"><img src="https://img.shields.io/badge/JavaScript-blue"><img src="https://img.shields.io/badge/-Bootstrap-blueviolet">  <img src="https://img.shields.io/badge/Web Frameworks%20-FastAPI-green"><img src="https://img.shields.io/badge/-Starlette-green">
