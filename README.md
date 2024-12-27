@@ -19,11 +19,11 @@
 
 <h2>
     <p align="center">
-     ⚡ Visage Auth ⚡
+     🕸  Visage Auth 🕸
     </p>
 </h2>
 
-<a href="https://manralai.medium.com/face-recognition-in-mfa-the-next-big-thing-end2end-implementation-e2052473b831"><img src="https://img.shields.io/badge/MoreInformation-411AFF?style=for-the-badge&logo=Medium&logoColor=white" /></a>
+🖥 <a href="https://manralai.medium.com/face-recognition-in-mfa-the-next-big-thing-end2end-implementation-e2052473b831"><img src="https://img.shields.io/badge/MoreInformation-411AFF?style=for-the-badge&logo=Medium&logoColor=white" /></a>
 &nbsp;&nbsp;&nbsp;&nbsp; 
 
 
@@ -68,7 +68,20 @@ By incorporating both password login and face recognition, this system exemplifi
 <h3>
 <p align="center">
   <u>
-    System Architecture
+    👉 General 2FA Working
+  </u>
+</p>
+</h3>
+<p align="center">
+  <kbd><img src="https://github.com/user-attachments/assets/e8d26931-c30a-4846-9624-73b3faee5645" height='300' width='400'> </kbd>
+</p>
+
+<hr>
+
+<h3>
+<p align="center">
+  <u>
+    ⚙️ Our System Architecture ⚙⚡
   </u>
 </p>
 </h3>
