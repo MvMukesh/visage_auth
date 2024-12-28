@@ -10,9 +10,9 @@ from visage_auth.exception import AppException
 from deepface.commons.functions import detect_face
 from visage_auth.data_access.user_embedding_data import UserEmbeddingData
 from visage_auth.constant.embedding_constants import (DETECTOR_BACKEND,
-                                                    EMBEDDING_MODEL_NAME,
-                                                    ENFORCE_DETECTION,
-                                                    SIMILARITY_THRESHOLD)
+                                                      EMBEDDING_MODEL_NAME,
+                                                      ENFORCE_DETECTION,
+                                                      SIMILARITY_THRESHOLD)
 
 
 class UserLoginEmbeddingValidation:
