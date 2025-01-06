@@ -23,6 +23,11 @@
     </p>
 </h2>
 
+<p align="right">
+  <kbd><img src="https://github.com/user-attachments/assets/9aeb87b7-e80a-450c-a68b-97d38ccc6b09" height='100' width='90'> </kbd>
+</p>
+
+
 🖥 <a href="https://manralai.medium.com/face-recognition-in-mfa-the-next-big-thing-end2end-implementation-e2052473b831"><img src="https://img.shields.io/badge/MoreInformation-411AFF?style=for-the-badge&logo=Medium&logoColor=white" /></a>
 &nbsp;&nbsp;&nbsp;&nbsp; 
 
@@ -92,6 +97,20 @@ By incorporating both password login and face recognition, this system exemplifi
 * <u>Top Box</u>: Represents a simpler scenario where a `Single user` registers and uses system on their own device
 * <u>Bottom Box</u>: Represents a more complex scenario where `Multiple users` can register and use system from different devices
 
+<hr> </hr>
+
+<h3>
+<p align="center">
+  <u>
+    ⚙️ System Architecture Diagram - HLD ⚙⚡
+  </u>
+</p>
+</h3>
+
+![system_architecture_diag](https://github.com/user-attachments/assets/a7ae774b-b92f-481b-8195-ade6dd5c5296)
+
+
+<hr>
 <!--Footer -->
 
 <div align="center"> 
@@ -110,3 +129,7 @@ By incorporating both password login and face recognition, this system exemplifi
 #<a href="https://twitter.com/WebXDAO"> <img src="https://img.shields.io/badge/X_(Twitter)-411AFF?style=for-the-badge&logo=x&logoColor=white" />
 </a> -->
 </div>
+
+
+
+
