@@ -109,7 +109,8 @@ By incorporating both password login and face recognition, this system exemplifi
 
 <!-- ![system_architecture_diag](https://github.com/user-attachments/assets/a7ae774b-b92f-481b-8195-ade6dd5c5296) -->
 
-![Untitled Diagram drawio](https://github.com/user-attachments/assets/c6ca5551-83ad-4790-ad3e-4d6fe0d4f603)
+![system_architecture_diag](https://github.com/user-attachments/assets/cd4990cb-0ddf-4ebc-8ba6-20d1c6ba83cb)
+
 
 <hr>
 <!--Footer -->
