@@ -86,7 +86,7 @@ By incorporating both password login and face recognition, this system exemplifi
 <h3>
 <p align="center">
   <u>
-    ⚙️ Our System Architecture ⚙⚡
+    ⚙️ System Architecture ⚙⚡
   </u>
 </p>
 </h3>
